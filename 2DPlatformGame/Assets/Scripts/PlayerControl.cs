@@ -15,15 +15,33 @@ public class PlayerControl : MonoBehaviour {
 	public float maxSpeed = 1f;
 	public string HorzAxis = "Horizontal";
 	public string JumpButton = "Jump";
-	public float JumpPower = 600;
+	public float JumpPower = 60;
+	private bool CanJump = true;
+	public float JumpTimeOut = 1f;
 
-	void Start () {
+	public CircleCollider2D FeetCillider = null;
+	public bool isGround = false;
+	public LayerMask GroundLayer;
+
+	void Awake () {
 		thisTransform = GetComponent<Transform>();
 		thisBody = GetComponent<Rigidbody2D>();
 	}
 	
+	private bool GetGrounded(){
+		//Check ground
+		Vector2 CircleCenter = new Vector2(thisTransform.position.x, thisTransform.position.y) + FeetCillider.offset;
+		Collider2D[] HitColliders = Physics2D.OverlapCircleAll (CircleCenter, FeetCillider.radius, GroundLayer);
+		if (HitColliders.Length > 0) {
+			return true;
+		}
+
+		return false;
+	}
 
 	void FixedUpdate () {
+
+		isGround = GetGrounded ();
 		float Horz = CrossPlatformInputManager.GetAxis ("Horizontal");
 		thisBody.AddForce (Vector2.right * Horz * maxSpeed);
 		if (CrossPlatformInputManager.GetButton(JumpButton)) {
@@ -46,6 +64,15 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	private void Jump(){
+
+		if (!isGround || !CanJump)return;
+
 		thisBody.AddForce (Vector2.up * JumpPower);
+		CanJump = false;
+		Invoke ("ActivateJump", JumpTimeOut);
+	}
+
+	private void ActivateJump(){
+		CanJump = true;
 	}
 }

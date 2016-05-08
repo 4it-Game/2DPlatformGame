@@ -16,6 +16,5 @@ D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEngi
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEditor.xml
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEngine.UI.xml
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEngine.Networking.xml
-D:\4it\My Current project\2DPlatformGame\2DPlatformGame\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\obj\Debug\Assembly-CSharp-firstpass.dll
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\obj\Debug\Assembly-CSharp-firstpass.pdb

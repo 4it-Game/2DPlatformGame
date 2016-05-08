@@ -22,6 +22,7 @@ D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\Mono.Ceci
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\Unity.CecilTools.dll
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\Mono.Cecil.Pdb.dll
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\Assembly-CSharp.pdb
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEngine.xml
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEditor.xml
 D:\4it\My Current project\2DPlatformGame\2DPlatformGame\Temp\bin\Debug\UnityEditor.Advertisements.xml
