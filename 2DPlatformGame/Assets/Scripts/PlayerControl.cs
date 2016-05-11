@@ -22,10 +22,34 @@ public class PlayerControl : MonoBehaviour {
 	public CircleCollider2D FeetCillider = null;
 	public bool isGround = false;
 	public LayerMask GroundLayer;
+	public GameObject DeathPartical = null;
+	public static float Health
+	{
+		get
+		{ 
+			return _Health;
+		}
+
+		set
+		{
+			_Health = value;
+
+			if (_Health <= 0) {
+				Die ();
+			}
+		}
+	}
+
+	private static float _Health = 100f;
+	public static PlayerControl PlayerInstance = null;
+	private Animator ThisAnimator = null;
+	private int MotionVal = Animator.StringToHash ("Motion");
 
 	void Awake () {
 		thisTransform = GetComponent<Transform>();
 		thisBody = GetComponent<Rigidbody2D>();
+
+		ThisAnimator = GetComponent<Animator> ();
 	}
 	
 	private bool GetGrounded(){
@@ -41,6 +65,11 @@ public class PlayerControl : MonoBehaviour {
 
 	void FixedUpdate () {
 
+		if (Input.GetKeyDown(KeyCode.D)) {
+			Health = 0;
+			Debug.Log ("D");
+		}
+
 		isGround = GetGrounded ();
 		float Horz = CrossPlatformInputManager.GetAxis ("Horizontal");
 		thisBody.AddForce (Vector2.right * Horz * maxSpeed);
@@ -54,6 +83,8 @@ public class PlayerControl : MonoBehaviour {
 		if ((Horz < 0f && facing != FACEDIRECTION.FACELEFT) || (Horz > 0f && facing != FACEDIRECTION.FACERIGHT)) {
 			FlipDirection ();
 		}
+
+		ThisAnimator.SetFloat (MotionVal, Mathf.Abs(Horz), 0.1f, Time.deltaTime);
 	}
 
 	private void FlipDirection(){
@@ -74,5 +105,20 @@ public class PlayerControl : MonoBehaviour {
 
 	private void ActivateJump(){
 		CanJump = true;
+	}
+
+	public static void Die(){
+		if (PlayerControl.PlayerInstance.DeathPartical != null) 
+		{
+			Instantiate (PlayerControl.PlayerInstance.DeathPartical,
+				PlayerControl.PlayerInstance.thisTransform.position,
+				PlayerControl.PlayerInstance.thisTransform.rotation);
+		}
+
+		Destroy (PlayerControl.PlayerInstance.gameObject);
+	}
+
+	void OnDestroy(){
+		PlayerInstance = null;
 	}
 }
